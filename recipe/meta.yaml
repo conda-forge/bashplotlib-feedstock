@@ -15,11 +15,12 @@ build:
   entry_points:
     - hist=bashplotlib.histogram:main
     - scatter=bashplotlib.scatterplot:main
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python {{ python_min }}
+    - setuptools
     - pip
   run:
     - python >={{ python_min }}
