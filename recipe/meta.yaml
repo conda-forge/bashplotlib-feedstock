@@ -6,12 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: b1b59be49d6254a5bd808919e0a23a75a703a02e7e84478edda765714e0bfaee 
 
 build:
   noarch: python
-  number: 0
+  number: 1
   entry_points:
     - hist=bashplotlib.histogram:main
     - scatter=bashplotlib.scatterplot:main
@@ -19,12 +19,14 @@ build:
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
     - pip
   run:
-    - python
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - bashplotlib
     - bashplotlib.utils
